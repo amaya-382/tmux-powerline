@@ -1,15 +1,13 @@
-# Default Theme
-
 if patched_font_in_use; then
-	TMUX_POWERLINE_SEPARATOR_LEFT_BOLD="⮂"
-	TMUX_POWERLINE_SEPARATOR_LEFT_THIN="⮃"
-	TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD="⮀"
-	TMUX_POWERLINE_SEPARATOR_RIGHT_THIN="⮁"
+  TMUX_POWERLINE_SEPARATOR_LEFT_BOLD="⮂"
+  TMUX_POWERLINE_SEPARATOR_LEFT_THIN="⮃"
+  TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD="⮀"
+  TMUX_POWERLINE_SEPARATOR_RIGHT_THIN="⮁"
 else
-	TMUX_POWERLINE_SEPARATOR_LEFT_BOLD="◀"
-	TMUX_POWERLINE_SEPARATOR_LEFT_THIN="❮"
-	TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD="▶"
-	TMUX_POWERLINE_SEPARATOR_RIGHT_THIN="❯"
+  TMUX_POWERLINE_SEPARATOR_LEFT_BOLD="◀"
+  TMUX_POWERLINE_SEPARATOR_LEFT_THIN="❮"
+  TMUX_POWERLINE_SEPARATOR_RIGHT_BOLD="▶"
+  TMUX_POWERLINE_SEPARATOR_RIGHT_THIN="❯"
 fi
 
 TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR=${TMUX_POWERLINE_DEFAULT_BACKGROUND_COLOR:-'235'}
@@ -19,40 +17,30 @@ TMUX_POWERLINE_DEFAULT_LEFTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_LEFTSIDE_SEPA
 TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR=${TMUX_POWERLINE_DEFAULT_RIGHTSIDE_SEPARATOR:-$TMUX_POWERLINE_SEPARATOR_LEFT_BOLD}
 
 
-# Format: segment_name background_color foreground_color [non_default_separator]
-
+# left status
 if [ -z $TMUX_POWERLINE_LEFT_STATUS_SEGMENTS ]; then
-	TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
-		"tmux_session_info 148 234" \
-		"hostname 33 0" \
-		#"ifstat 30 255" \
-		#"ifstat_sys 30 255" \
-		"lan_ip 24 255 ${TMUX_POWERLINE_SEPARATOR_RIGHT_THIN}" \
-		"wan_ip 24 255" \
-		"vcs_branch 29 88" \
-		"vcs_compare 60 255" \
-		"vcs_staged 64 255" \
-		"vcs_modified 9 255" \
-		"vcs_others 245 0" \
-	)
+  TMUX_POWERLINE_LEFT_STATUS_SEGMENTS=(
+    "tmux_session_info 27 0" \ #セッション
+    "hostname 7 0" \ #ホスト名
+  )
 fi
 
+# right status
 if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
-	TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
-		#"earthquake 3 0" \
-		"pwd 89 211" \
-		"mailcount 9 255" \
-		"now_playing 234 37" \
-		#"cpu 240 136" \
-		"load 237 167" \
-		#"tmux_mem_cpu_load 234 136" \
-		"battery 137 127" \
-		"weather 37 255" \
-		#"rainbarf 0 0" \
-		#"xkb_layout 125 117" \
-		"date_day 235 136" \
-		"date 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
-		"time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
-		#"utc_time 235 136 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
-	)
+  TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS=(
+    "vcs_branch 2 1" \ #ブランチ名
+    "vcs_others 235 2 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \ #Others
+    "vcs_staged 235 2 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \ #Staged
+    "vcs_modified 235 2 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \ #Modified
+    "vcs_compare 235 2 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \ #Compare
+    "ifstat_sys 24 0" \ #ネットワークシステム
+    "wan_ip 24 0 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \ #WAN IP アドレス
+    "lan_ip 24 0 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \ #LAN IP アドレス
+    "battery 5 255" \ #バッテリー
+    # "weather 37 255" \ #天気
+    # "xkb_layout 125 117" \ #XKBのレイアウト
+    "date_day 2 0" \ #日付
+    "date 2 0 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \ #日付
+    "time 2 0 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \ #時刻
+  )
 fi
